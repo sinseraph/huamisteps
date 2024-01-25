@@ -1,0 +1,41 @@
+# This is a basic workflow that is manually triggered
+
+name: refresh steps in we/ali
+
+# Controls when the action will run. Workflow runs when manually triggered using the UI
+# or API.
+
+env:
+  USER: ${{secrets.USR}}
+  PW: ${{secrets.PW}}
+on:
+  watch:
+    types: started
+  schedule:
+    - cron: '35 2,10 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout codes
+        uses: actions/checkout@v4
+        
+      - name: Update system and install zsh
+        run: |
+          sudo -E apt-get -qq update
+          sudo -E apt-get install zsh -y
+
+      - name: setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.12
+          cache: 'pip' # caching pip dependencies
+      - run: pip install -r requirements.txt
+
+      - name: execute
+        run: |
+          user='${{ secrets.USER }}'
+          passwd='${{ secrets.PW }}' 
+          python3 main.py ${user} ${passwd}
