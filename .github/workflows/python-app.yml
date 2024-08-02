@@ -38,3 +38,5 @@ jobs:
           user='${{ secrets.USER }}'
           passwd='${{ secrets.PW }}' 
           python3 main.py ${user} ${passwd}
+          echo "Last updated: $(date)" > README.md
+
