@@ -84,28 +84,28 @@ function persist_execute_log {
     TZ='UTC' date "+%y-%m-%d %H:%M:%S" | xargs -I {} echo "UTC: {}"
     TZ='Asia/Shanghai' date "+%y-%m-%d %H:%M:%S" | xargs -I {} echo "北京时间: {}"
   } >> cron_change_time
-  current_cron=$(< .github/workflows/run.yml grep cron|awk '{print substr($0, index($0,$3))}')
-  {
-    echo "current cron:"
-    convert_utc_to_shanghai "$current_cron"
-  } >> cron_change_time
-  os=$(uname -s)
-  sed_prefix=(sed -i)
-  if [[ $os == "Darwin" ]]; then
-    sed_prefix=(sed -i '')
-  fi
-  current_cron=$(< .github/workflows/run.yml grep cron|awk '{print substr($0, index($0,$3))}')
-  cron_hours=$(inspect_hours "$current_cron")
-  if test -n "$new_cron_hours"; then
-    cron_hours=$(hours_except_now "$new_cron_hours")
-  fi
-  "${sed_prefix[@]}" -E "s/(- cron: ')[0-9]+( [^[:space:]]+ \* \* \*')/\1$((RANDOM % 59)) ${cron_hours} * * *'/g" .github/workflows/run.yml
-  current_cron=$(< .github/workflows/run.yml grep cron|awk '{print substr($0, index($0,$3))}')
-  {
-    echo "next cron:"
-    convert_utc_to_shanghai "$current_cron"
-    inspect_next "$current_cron"
-  } >> cron_change_time
+  # current_cron=$(< .github/workflows/run.yml grep cron|awk '{print substr($0, index($0,$3))}')
+  # {
+  #   echo "current cron:"
+  #   convert_utc_to_shanghai "$current_cron"
+  # } >> cron_change_time
+  # os=$(uname -s)
+  # sed_prefix=(sed -i)
+  # if [[ $os == "Darwin" ]]; then
+  #   sed_prefix=(sed -i '')
+  # fi
+  # current_cron=$(< .github/workflows/run.yml grep cron|awk '{print substr($0, index($0,$3))}')
+  # cron_hours=$(inspect_hours "$current_cron")
+  # if test -n "$new_cron_hours"; then
+  #   cron_hours=$(hours_except_now "$new_cron_hours")
+  # fi
+  # "${sed_prefix[@]}" -E "s/(- cron: ')[0-9]+( [^[:space:]]+ \* \* \*')/\1$((RANDOM % 59)) ${cron_hours} * * *'/g" .github/workflows/run.yml
+  # current_cron=$(< .github/workflows/run.yml grep cron|awk '{print substr($0, index($0,$3))}')
+  # {
+  #   echo "next cron:"
+  #   convert_utc_to_shanghai "$current_cron"
+  #   inspect_next "$current_cron"
+  # } >> cron_change_time
 
 }
 
