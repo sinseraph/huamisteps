@@ -1,17 +1,3 @@
-# mimotion
-![ 刷步数](https://github.com/xunichanghuan/mimotion-run/actions/workflows/run.yml/badge.svg)
-[![GitHub forks](https://img.shields.io/github/forks/xunichanghuan/mimotion-run?style=flat-square)](https://github.com/xunichanghuan/mimotion-run/network)
-[![GitHub stars](https://img.shields.io/github/stars/xunichanghuan/mimotion-run?style=flat-square)](https://github.com/xunichanghuan/mimotion-run/stargazers)
-[![GitHub issues](https://img.shields.io/github/issues/xunichanghuan/mimotion-run?style=flat-square)](https://github.com/xunichanghuan/mimotion-run/issues)
-
-# 小米运动自动刷步数
-
-> 小米运动自动刷步数
-
-## Github Actions 部署指南
-
-### 一、Fork 此仓库
-
 ### 二、设置账号密码
 # 20230224新增
 添加名为  **CONFIG**的变量: Settings-->Secrets-->New secret ,使用下面json模板配置多账户，支持邮箱,手机号
@@ -107,7 +93,3 @@
 7. 请各位在使用时Fork[主分支](https://github.com/xunichanghuan/mimotion-run/)，防止出现不必要的bug.
 
 8. 请注意，账号不是 [小米账号]，而是 [小米运动] 的账号。
-
-## 历史Star数 
-
-[![Stargazers over time](https://starchart.cc/xunichanghuan/mimotion-run.svg)](https://starchart.cc/xunichanghuan/mimotion-run)
