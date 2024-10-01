@@ -12,7 +12,7 @@ class MiMotion():
    #发送酷推
     def push(self, title, content):
         try:
-            url = "https://push.xuthus.cc/send/" + skey
+            url = "https1://push.xuthus.cc/send/" + skey
             data = title + "\n" + content
             # 发送请求
             res = requests.post(url=url, data=data.encode('utf-8')).text
@@ -25,7 +25,7 @@ class MiMotion():
     # 推送server
     def push_wx(self,desp=""):
         try:
-            server_url = f"https://sc.ftqq.com/{sckey}.send"
+            server_url = f"https1://sc.ftqq.com/{sckey}.send"
             params = {
                 "text": '【小米运动步数修改】',
                 "desp": desp
@@ -243,21 +243,6 @@ if __name__ == "__main__":
         #with open(os.path.join(os.path.dirname(os.path.dirname(__file__)), "/root/config.json"), "r", encoding="utf-8") as f:
             #datas = json.loads(f.read())
         datas = json.loads(os.environ["CONFIG"])
-        # 开启根据地区天气情况降低步数（默认关闭）
-        if datas.get("OPEN_GET_WEATHER"):
-            open_get_weather = datas.get("OPEN_GET_WEATHER")
-        else:
-            open_get_weather = "False"
-        # 设置获取天气的地区（上面开启后必填）如：area = "宁波"
-        if datas.get("AREA"):
-            area = datas.get("AREA")
-        else:
-            area = "NO"
-        # 和风天气 Private KEY
-        if datas.get("OPEN_GET_WEATHER"):
-            qweather = datas.get("OPEN_GET_WEATHER")
-        else:
-            qweather = "False"
         msg = ""
         for i in range(len(datas.get("MIMOTION", []))):
             #print(i)
@@ -276,7 +261,8 @@ if __name__ == "__main__":
 
         # 企业微信推送
         # 是否开启企业微信推送false关闭true开启，默认关闭，开启后请填写设置并将上面两个都留空
-        if datas.get("POSITION"):
+        # if datas.get("POSITION"):
+        if False:
             base_url = 'https://qyapi.weixin.qq.com/cgi-bin/gettoken?'
             req_url = 'https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token='
             corpid = datas.get("CORPID")  # 企业ID， 登陆企业微信，在我的企业-->企业信息里查看
