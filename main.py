@@ -224,21 +224,11 @@ def main(_user, _passwd, min_1, max_1):
 
 
 # 获取时间戳
-def get_time():
-    try:
-        url = "http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp"
-        response = requests.get(url, headers=self.headers).json()
-        t = response["data"]["t"]
-        return t
-    except Exception as e:
-        error_traceback = traceback.format_exc()
-        print(error_traceback)
-
-    
-    # url = 'http://api.m.taobao.com/rest/api3.do?api=mtop.common.getTimestamp'
-    # response = requests.get(url, headers=headers).json()
-    # current_time = response['data']['t']
-    # return current_time
+def get_time():    
+    url = 'http://acs.m.taobao.com/gw/mtop.common.getTimestamp'
+    response = requests.get(url, headers=headers).json()
+    current_time = response['data']['t']
+    return current_time
 
 
 # 获取app_token
