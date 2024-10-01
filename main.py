@@ -228,6 +228,7 @@ def get_time():
     url = 'http://acs.m.taobao.com/gw/mtop.common.getTimestamp'
     response = requests.get(url, headers=headers).json()
     current_time = response['data']['t']
+    print(current_time)
     return current_time
 
 
