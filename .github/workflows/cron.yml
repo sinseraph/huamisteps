@@ -1,4 +1,4 @@
-aname: 随机定时运行
+name: 随机定时运行
 on:
   workflow_run:
     workflows: ["刷步数"]
