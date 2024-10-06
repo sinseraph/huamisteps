@@ -9,13 +9,12 @@ import sys
 
 import requests
 
-
 # env_user = os.environ['USER']
 # env_pw = os.environ['PW']
 
 # add random time delay
 delay = random.randint(0, 4) + random.random()
-time.sleep(delay * 60)
+# time.sleep(delay * 60)
 
 # 开启根据地区天气情况降?": 0.8, "小雨": 0.7, "中雨": 0.5, "大雨": 0.4, "暴雨": 0.3, "大暴雨": 0.2, "特大暴雨": 0.2}
 
@@ -62,7 +61,7 @@ headers = {'User-Agent': 'MiFit/5.3.0 (iPhone; iOS 14.7.1; Scale/3.00)'}
 # 获取北京时间确定随机步数&启动主函数
 def getBeijinTime():
     global K, type
-    K = 1.15#ratio for zooming range min and max 
+    K = 1.15  # ratio for zooming range min and max
     type = ""
     hea = {'User-Agent': 'Mozilla/5.0'}
     url = r'https://apps.game.qq.com/CommArticle/app/reg/gdate.php'
@@ -86,8 +85,8 @@ def getBeijinTime():
         return
     if min_1 != 0 and max_1 != 0:
 
-        #user_mi = env_user
-        #passwd_mi = env_pw
+        # user_mi = env_user
+        # passwd_mi = env_pw
 
         user_mi = sys.argv[1]
         passwd_mi = sys.argv[2]
@@ -224,11 +223,12 @@ def main(_user, _passwd, min_1, max_1):
 
 
 # 获取时间戳
-def get_time():    
-    url = 'http://acs.m.taobao.com/gw/mtop.common.getTimestamp'
+def get_time():
+    # url = 'http://acs.m.taobao.com/gw/mtop.common.getTimestamp/'
+    url = 'https://cube.meituan.com/ipromotion/cube/toc/component/base/getServerCurrentTime'
     response = requests.get(url, headers=headers).json()
-    current_time = response['data']['t']
-    print(current_time)
+    # current_time = response['data']['t'] # for taobao
+    current_time = response['data']
     return current_time
 
 
